@@ -1,4 +1,4 @@
 tipcalculator
 =============
 
-iOS week 1 tip calculator assignment
+iOS week 1 tip calculator assignment!
