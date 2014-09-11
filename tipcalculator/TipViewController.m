@@ -40,11 +40,34 @@
     [self updateValues];
 }
 
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"view will appear");
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int intValue = [defaults integerForKey:@"settingDefaultTip"];
+    self.tipControl.selectedSegmentIndex = intValue;
+    [self updateValues];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"view did appear");
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    NSLog(@"view will disappear");
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    NSLog(@"view did disappear");
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (IBAction)onTap:(id)sender {
     [self.view endEditing:YES];

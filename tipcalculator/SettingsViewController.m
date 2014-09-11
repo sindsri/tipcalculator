@@ -9,6 +9,9 @@
 #import "SettingsViewController.h"
 
 @interface SettingsViewController ()
+@property (weak, nonatomic) IBOutlet UISegmentedControl *settingTip;
+
+- (IBAction)onDefaultTipSetings:(id)sender;
 
 @end
 
@@ -18,7 +21,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.title = @"Default Settings";
     }
     return self;
 }
@@ -27,7 +30,21 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    //Loading a key from NSDefaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int intValue = [defaults integerForKey:@"settingDefaultTip"];
+    self.settingTip.selectedSegmentIndex = intValue;
+    
 }
+
+- (IBAction)onDefaultTipSetings:(id)sender {
+    NSLog(@"Inside Default Tip Settings");
+    NSInteger selectedTipAmt = self.settingTip.selectedSegmentIndex;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:selectedTipAmt forKey:@"settingDefaultTip"];
+    [defaults synchronize];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
